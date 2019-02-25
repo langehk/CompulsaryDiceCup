@@ -32,6 +32,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Button btnOk = this.findViewById(R.id.btnOk);
+        btnOk.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                onClickOk(Integer.parseInt(m_eTxtResult.getText().toString()));
+            }
+
+        });
+
         Button btnSub = this.findViewById(R.id.btnSub);
         btnSub.setOnClickListener(new View.OnClickListener()
         {
@@ -44,9 +55,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
     private void onClickAdd()
     {
-        
+
         int dices = Integer.parseInt(m_eTxtResult.getText().toString());
 
         if (dices > 5)
@@ -77,6 +89,10 @@ public class MainActivity extends AppCompatActivity {
         m_eTxtResult.setText(String.valueOf(result));
 
         m_txtInfo.setText("Number of dices: " + String.valueOf(result));
+    }
+
+    private int onClickOk(int dices) {
+        return dices;
     }
 
 }
