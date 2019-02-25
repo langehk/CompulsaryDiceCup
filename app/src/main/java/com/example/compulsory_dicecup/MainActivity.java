@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -45,7 +46,14 @@ public class MainActivity extends AppCompatActivity {
 
     private void onClickAdd()
     {
+        
         int dices = Integer.parseInt(m_eTxtResult.getText().toString());
+
+        if (dices > 5)
+        {
+            Toast.makeText(this, "Max 6 dices.", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         int result = dices + 1;
 
@@ -57,6 +65,12 @@ public class MainActivity extends AppCompatActivity {
     private void onClickSub()
     {
         int dices = Integer.parseInt(m_eTxtResult.getText().toString());
+
+        if (dices < 2)
+        {
+            Toast.makeText(this, "Atleast 1 dice needed.", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         int result = dices - 1;
 
