@@ -1,6 +1,7 @@
 package com.example.compulsory_dicecup;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -32,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        configureNextButton();
 
         m_eTxtResult = this.findViewById(R.id.txtResult);
         m_txtInfo = this.findViewById(R.id.txtInfo);
@@ -135,6 +138,20 @@ public class MainActivity extends AppCompatActivity {
         m_eTxtResult.setText(String.valueOf(result));
 
         m_txtInfo.setText("Number of dices: " + String.valueOf(result));
+    }
+
+
+
+
+    private void configureNextButton(){
+        Button nextButton = (Button) findViewById(R.id.btnNextView);
+        nextButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view){
+                startActivity(new Intent(MainActivity.this, LogActivity.class));
+            }
+        });
     }
 
 }
