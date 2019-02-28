@@ -21,12 +21,18 @@
         android:id="@+id/txtResult"
         android:textSize="30sp"
         />
-
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:id="@+id/AddSubtractBox">
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/add"
         android:id="@+id/btnAdd"
+        android:background="@color/colorPrimary"
         android:layout_gravity="center"
         />
 
@@ -35,8 +41,10 @@
         android:layout_height="wrap_content"
         android:text="@string/sub"
         android:id="@+id/btnSub"
+        android:background="@color/colorAccent"
         android:layout_gravity="center"
         />
+        </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
