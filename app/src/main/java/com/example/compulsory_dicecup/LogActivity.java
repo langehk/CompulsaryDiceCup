@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
 
 import java.util.ArrayList;
 
@@ -15,8 +16,17 @@ public class LogActivity extends AppCompatActivity {
         setContentView(R.layout.activity_log);
 
         configureBackButton();
+
+        setUp();
+
     }
 
+
+    private void setUp() {
+        ListView diceListView = this.findViewById(R.id.diceListView);
+
+
+    }
 
     private void configureBackButton(){
         Button backButton = findViewById(R.id.btnPrevView);
