@@ -18,7 +18,7 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
 
     LinearLayout box;
-    Button rollDice;
+    Button rollDice, btnAdd, btnSub;
     int nbDice;
     TextView m_txtInfo;
 
@@ -32,24 +32,28 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        configureNextButton();
         nbDice = 2;
-        m_txtInfo = this.findViewById(R.id.txtInfo);
-        m_txtInfo.setText("Number of dices: " + String.valueOf(nbDice));
-        box = findViewById(R.id.box);
-        rollDice = findViewById(R.id.btnRoll);
-        rollDice.setOnClickListener((v) -> {rollDice(nbDice); });
-
-        Button btnAdd = this.findViewById(R.id.btnAdd);
-
-        btnAdd.setOnClickListener(v -> onClickAdd());
-
-        Button btnSub = this.findViewById(R.id.btnSub);
-
-        btnSub.setOnClickListener(v -> onClickSub());
+        setUp();
 
     }
 
+    private void setUp(){
+        m_txtInfo = this.findViewById(R.id.txtInfo);
+        m_txtInfo.setText("Number of dices: " + String.valueOf(nbDice));
+
+        box = findViewById(R.id.box);
+
+        rollDice = findViewById(R.id.btnRoll);
+        rollDice.setOnClickListener((v) -> {rollDice(nbDice); });
+
+        btnAdd = this.findViewById(R.id.btnAdd);
+        btnAdd.setOnClickListener(v -> onClickAdd());
+
+        btnSub = this.findViewById(R.id.btnSub);
+        btnSub.setOnClickListener(v -> onClickSub());
+
+        configureNextButton();
+    }
 
     private ImageView makeImgView(int i) {
         ImageView img = new ImageView(this);
