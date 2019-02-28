@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
         nbDice = 2;
         m_txtInfo = this.findViewById(R.id.txtInfo);
-
+        m_txtInfo.setText("Number of dices: " + String.valueOf(nbDice));
         box = findViewById(R.id.box);
         resBox = findViewById(R.id.resBox);
         rollDice = findViewById(R.id.btnRoll);
@@ -98,8 +98,6 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < c; i++) {
             box.addView(makeImgView(rand.nextInt(6)+1));
         }
-
-        //resBox.addView(box);
     }
 
     private void onClickAdd()
