@@ -13,6 +13,8 @@ import android.widget.Toast;
 
 import com.example.compulsory_dicecup.BEDiceRoll;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
@@ -24,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     BEDiceRoll beDiceRoll;
 
-    private int[] diceRolls;
+    private List<Integer> diceRoll= new ArrayList<>();
 
 
     @SuppressLint("ResourceType")
@@ -84,7 +86,9 @@ public class MainActivity extends AppCompatActivity {
         box.removeAllViews();
         Random rand = new Random();
         for (int i = 0; i < c; i++) {
-            box.addView(makeImgView(rand.nextInt(6)+1));
+            int x = rand.nextInt(6)+1;
+            box.addView(makeImgView(x));
+            diceRoll.add(x);
         }
     }
 
