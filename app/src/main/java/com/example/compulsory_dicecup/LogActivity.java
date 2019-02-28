@@ -36,5 +36,10 @@ public class LogActivity extends AppCompatActivity {
 
     private void setGui(){
         ArrayList<BEDiceRoll> rolls = (ArrayList<BEDiceRoll>) getIntent().getSerializableExtra("History");
+
+        for (BEDiceRoll roll : rolls)
+        {
+           ;
+        }
     }
 }
