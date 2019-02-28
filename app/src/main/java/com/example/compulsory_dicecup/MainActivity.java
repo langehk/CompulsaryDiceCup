@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
     BEDiceRoll beDiceRoll;
 
-    
+    private int[] diceRolls;
 
 
     @SuppressLint("ResourceType")

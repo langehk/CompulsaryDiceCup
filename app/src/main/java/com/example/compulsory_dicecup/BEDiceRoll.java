@@ -20,4 +20,12 @@ public class BEDiceRoll implements Serializable{
     public int getDiceId(){
         return m_diceId;
     }
+
+    public void setDiceId(int id){
+        this.m_diceId = id;
+    }
+
+    public void setM_diceRolls(int[] diceRolls) {
+        this.m_diceRolls = diceRolls;
+    }
 }
