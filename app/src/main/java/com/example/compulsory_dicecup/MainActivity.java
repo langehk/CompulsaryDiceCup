@@ -130,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
     private void configureNextButton(){
         Button nextButton = (Button) findViewById(R.id.btnNextView);
         Intent x = new Intent(this,LogActivity.class) ;
-        x.putParcelableArrayListExtra("History", (ArrayList<? extends Parcelable>) rollHistory);
+        x.putExtra("History",  rollHistory);
         nextButton.setOnClickListener(view -> startActivity(x));
     }
 }
