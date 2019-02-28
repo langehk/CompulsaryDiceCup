@@ -18,8 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
     LinearLayout box, resBox;
     Button rollDice;
-
-    TextView m_eTxtResult;
+    int nbDice;
     TextView m_txtInfo;
 
     BEDiceRoll beDiceRoll;
@@ -32,14 +31,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        m_eTxtResult = this.findViewById(R.id.txtResult);
+        nbDice = 2;
         m_txtInfo = this.findViewById(R.id.txtInfo);
 
         box = findViewById(R.id.box);
         resBox = findViewById(R.id.resBox);
         rollDice = findViewById(R.id.btnRoll);
-        rollDice.setOnClickListener((v) -> {rollDice(6); });
+        rollDice.setOnClickListener((v) -> {rollDice(nbDice); });
 
         Button btnAdd = this.findViewById(R.id.btnAdd);
         btnAdd.setOnClickListener(new View.OnClickListener()
@@ -104,37 +102,28 @@ public class MainActivity extends AppCompatActivity {
 
     private void onClickAdd()
     {
-
-        int dices = Integer.parseInt(m_eTxtResult.getText().toString());
-
-        if (dices > 5)
+        if (nbDice > 5)
         {
             Toast.makeText(this, "Max 6 dices.", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        int result = dices + 1;
+        nbDice = nbDice + 1;
 
-        m_eTxtResult.setText(String.valueOf(result));
-
-        m_txtInfo.setText("Number of dices: " + String.valueOf(result));
+        m_txtInfo.setText("Number of dices: " + String.valueOf(nbDice));
     }
 
     private void onClickSub()
     {
-        int dices = Integer.parseInt(m_eTxtResult.getText().toString());
-
-        if (dices < 2)
+        if (nbDice < 2)
         {
             Toast.makeText(this, "Atleast 1 dice needed.", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        int result = dices - 1;
+        nbDice = nbDice - 1;
 
-        m_eTxtResult.setText(String.valueOf(result));
-
-        m_txtInfo.setText("Number of dices: " + String.valueOf(result));
+        m_txtInfo.setText("Number of dices: " + String.valueOf(nbDice));
     }
 
 }
