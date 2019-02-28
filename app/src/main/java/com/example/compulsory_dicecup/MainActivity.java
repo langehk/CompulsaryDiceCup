@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void setUp(){
         m_txtInfo = this.findViewById(R.id.txtInfo);
-        m_txtInfo.setText(getString(R.string.txtInfoText) + String.valueOf(nbDice));
+        m_txtInfo.setText("Number of dices: " + String.valueOf(nbDice));
 
         box = findViewById(R.id.box);
 
@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
     private void configureNextButton(){
         Button nextButton = (Button) findViewById(R.id.btnNextView);
         Intent x = new Intent(this,LogActivity.class) ;
-        //x.putParcelableArrayListExtra("History", (ArrayList<? extends Parcelable>) rollHistory);
+        x.putParcelableArrayListExtra("History", (ArrayList<? extends Parcelable>) rollHistory);
         nextButton.setOnClickListener(view -> startActivity(x));
 
     }
