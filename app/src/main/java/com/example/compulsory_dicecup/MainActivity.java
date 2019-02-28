@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -14,7 +13,6 @@ import android.widget.Toast;
 import com.example.compulsory_dicecup.BEDiceRoll;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
     BEDiceRoll beDiceRoll;
 
-    private ArrayList<ArrayList<Integer>> diceRoll= new ArrayList<>();
+    private ArrayList<ArrayList<Integer>> rollHistory = new ArrayList<>();
 
 
     @SuppressLint("ResourceType")
@@ -95,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
             oneRoll.add(x);
         }
 
-        diceRoll.add(oneRoll);
+        rollHistory.add(oneRoll);
     }
 
     private void onClickAdd()
