@@ -6,5 +6,8 @@
 
     <string name="history">History</string>
     <string name="BackToDice">Back</string>
+    <string name="NumberOfDices">Number of dices: </string>
+    <string name="RollDice">Roll Dice</string>
+    <string name="No">NO</string>
 </resources>
 
