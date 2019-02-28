@@ -42,25 +42,12 @@ public class MainActivity extends AppCompatActivity {
         rollDice.setOnClickListener((v) -> {rollDice(nbDice); });
 
         Button btnAdd = this.findViewById(R.id.btnAdd);
-        btnAdd.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                onClickAdd();
-            }
-        });
+
+        btnAdd.setOnClickListener(v -> onClickAdd());
 
         Button btnSub = this.findViewById(R.id.btnSub);
 
-        btnSub.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                onClickSub();
-            }
-        });
+        btnSub.setOnClickListener(v -> onClickSub());
 
     }
 
@@ -130,13 +117,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void configureNextButton(){
         Button nextButton = (Button) findViewById(R.id.btnNextView);
-        nextButton.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view){
-                startActivity(new Intent(MainActivity.this, LogActivity.class));
-            }
-        });
+        nextButton.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, LogActivity.class)));
     }
 
 }
