@@ -13,7 +13,7 @@
         android:text="@string/history" />
 
     <TextView
-        android:text="Number of dices: "
+        android:text="@string/NumberOfDices"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/txtInfo"
@@ -71,13 +71,13 @@
             android:layout_height="wrap_content"
             android:layout_margin="@android:dimen/app_icon_size"
             android:background="@color/colorPrimary"
-            android:text="Roll Dice"/>
+            android:text="@string/RollDice"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@android:dimen/app_icon_size"
             android:background="@color/colorAccent"
-            android:text="NO"/>
+            android:text="@string/No"/>
     </LinearLayout>
 
     <LinearLayout
