@@ -141,6 +141,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    private void onClickHistory(){
+
+    }
 
 
     private void configureNextButton(){
