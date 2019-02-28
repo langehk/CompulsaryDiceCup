@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        configureNextButton();
         nbDice = 2;
         m_txtInfo = this.findViewById(R.id.txtInfo);
         m_txtInfo.setText("Number of dices: " + String.valueOf(nbDice));
@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         Button btnSub = this.findViewById(R.id.btnSub);
+
         btnSub.setOnClickListener(new View.OnClickListener()
         {
             @Override
