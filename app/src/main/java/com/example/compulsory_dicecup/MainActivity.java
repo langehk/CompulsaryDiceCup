@@ -8,11 +8,16 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.compulsory_dicecup.BEDiceRoll;
 
 public class MainActivity extends AppCompatActivity {
 
     TextView m_eTxtResult;
     TextView m_txtInfo;
+
+    BEDiceRoll beDiceRoll;
+
+    
 
 
     @SuppressLint("ResourceType")
