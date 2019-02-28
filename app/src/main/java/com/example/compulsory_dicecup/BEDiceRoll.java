@@ -2,6 +2,7 @@ package com.example.compulsory_dicecup;
 
 import java.io.Serializable;
 
+
 public class BEDiceRoll implements Serializable{
 
     private int[] m_diceRolls;
@@ -13,7 +14,7 @@ public class BEDiceRoll implements Serializable{
     }
 
     public int[] getDiceRolls(){
-        return m_diceRolls
+        return m_diceRolls;
     }
 
     public int getDiceId(){

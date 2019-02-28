@@ -8,10 +8,12 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 public class MainActivity extends AppCompatActivity {
 
     TextView m_eTxtResult;
     TextView m_txtInfo;
+
 
     @SuppressLint("ResourceType")
     @Override
