@@ -128,11 +128,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void onClickHistory(){
-
-    }
-
-
     private void configureNextButton(){
         Button nextButton = (Button) findViewById(R.id.btnNextView);
         nextButton.setOnClickListener(new View.OnClickListener()
