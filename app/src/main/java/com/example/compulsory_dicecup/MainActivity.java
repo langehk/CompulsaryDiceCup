@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     BEDiceRoll beDiceRoll;
 
-    private List<Integer> diceRoll= new ArrayList<>();
+    private ArrayList<ArrayList<Integer>> diceRoll= new ArrayList<>();
 
 
     @SuppressLint("ResourceType")
@@ -86,13 +86,16 @@ public class MainActivity extends AppCompatActivity {
         return img;
     }
     private void rollDice(int c) {
+        ArrayList<Integer> oneRoll = new ArrayList<>();
         box.removeAllViews();
         Random rand = new Random();
         for (int i = 0; i < c; i++) {
             int x = rand.nextInt(6)+1;
             box.addView(makeImgView(x));
-            diceRoll.add(x);
+            oneRoll.add(x);
         }
+
+        diceRoll.add(oneRoll);
     }
 
     private void onClickAdd()
