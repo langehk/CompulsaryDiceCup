@@ -7,10 +7,13 @@ import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import java.util.ArrayList;
+import java.util.List;
 
 public class LogActivity extends AppCompatActivity {
     ListView diceListView;
-    ArrayList<String> test;
+    ArrayList<String> dates = new ArrayList<>();
+    ArrayList<ArrayList<Integer>> history;
+    ArrayList<Integer> oneThrow = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,18 +39,22 @@ public class LogActivity extends AppCompatActivity {
         });
     }
 
+    //dates.add(roll.getTimeStamp().toString());
+
     private void setGui(){
         ArrayList<BEDiceRoll> rolls = (ArrayList<BEDiceRoll>) getIntent().getSerializableExtra("History");
-        test = new ArrayList<>();
-        for (BEDiceRoll roll : rolls)
-        {
-           test.add(roll.getTimeStamp().toString());
+        dates = new ArrayList<>();
+        history = new ArrayList<>();
+        oneThrow = new ArrayList<>();
+        for (BEDiceRoll roll : rolls) {
+            for(int i = 0; i < roll.getDiceRolls().size() ; i++){
+                oneThrow.add(roll.getDiceRolls().get(i));
+            }
+            history.add(oneThrow);
         }
-
         ListAdapter adapter =
-                new ArrayAdapter<String>(this,
-                        android.R.layout.simple_list_item_1, test);
-
+                new ArrayAdapter<ArrayList<Integer>>(this,
+                        android.R.layout.simple_list_item_1, history);
         diceListView.setAdapter(adapter);
     }
 }
