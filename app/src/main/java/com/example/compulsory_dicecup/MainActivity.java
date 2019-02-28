@@ -1,6 +1,7 @@
 package com.example.compulsory_dicecup;
 
 import android.annotation.SuppressLint;
+import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
@@ -11,8 +12,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.compulsory_dicecup.BEDiceRoll;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -25,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     BEDiceRoll beDiceRoll;
 
-    private ArrayList<ArrayList<Integer>> rollHistory = new ArrayList<>();
+    private ArrayList<BEDiceRoll> rollHistory = new ArrayList<>();
 
 
     @SuppressLint("ResourceType")
@@ -85,16 +86,18 @@ public class MainActivity extends AppCompatActivity {
         return img;
     }
     private void rollDice(int c) {
-        ArrayList<Integer> oneRoll = new ArrayList<>();
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        BEDiceRoll diceRoll = new BEDiceRoll(timestamp);
+        ArrayList<Integer> roll = new ArrayList<>();
         box.removeAllViews();
         Random rand = new Random();
         for (int i = 0; i < c; i++) {
             int x = rand.nextInt(6)+1;
             box.addView(makeImgView(x));
-            oneRoll.add(x);
+            roll.add(x);
         }
-
-        rollHistory.add(oneRoll);
+        diceRoll.setM_diceRolls(roll);
+        rollHistory.add(diceRoll);
     }
 
     private void onClickAdd()
@@ -129,6 +132,5 @@ public class MainActivity extends AppCompatActivity {
         Intent x = new Intent(this,LogActivity.class) ;
         x.putParcelableArrayListExtra("History", (ArrayList<? extends Parcelable>) rollHistory);
         nextButton.setOnClickListener(view -> startActivity(x));
-
     }
 }

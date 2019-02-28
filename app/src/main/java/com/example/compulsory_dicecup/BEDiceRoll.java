@@ -1,31 +1,32 @@
 package com.example.compulsory_dicecup;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
+import java.util.ArrayList;
 
 
 public class BEDiceRoll implements Serializable{
 
-    private int[] m_diceRolls;
-    private int m_diceId;
+    private ArrayList<Integer> m_diceRolls = new ArrayList<Integer>();
+    private java.sql.Timestamp m_timeStamp;
 
-    public BEDiceRoll(int[] diceRolls, int id){
-        m_diceRolls = diceRolls;
-        m_diceId = id;
+    public BEDiceRoll(java.sql.Timestamp timestamp){
+        m_timeStamp = timestamp;
     }
 
-    public int[] getDiceRolls(){
+    public ArrayList<Integer> getDiceRolls(){
         return m_diceRolls;
     }
 
-    public int getDiceId(){
-        return m_diceId;
+   public void setM_diceRolls(ArrayList<Integer> diceRolls) {
+       this.m_diceRolls = diceRolls;
     }
 
-    public void setDiceId(int id){
-        this.m_diceId = id;
+    public java.sql.Timestamp getTimeStamp(){
+        return m_timeStamp;
     }
 
-    public void setM_diceRolls(int[] diceRolls) {
-        this.m_diceRolls = diceRolls;
+    public void setTimestamp(Timestamp timestamp){
+        this.m_timeStamp = timestamp;
     }
 }

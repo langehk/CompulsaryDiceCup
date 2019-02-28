@@ -1,11 +1,9 @@
 package com.example.compulsory_dicecup;
-
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
-
 import java.util.ArrayList;
 
 public class LogActivity extends AppCompatActivity {
@@ -14,7 +12,7 @@ public class LogActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log);
-        //setGui();
+
         configureBackButton();
         setUp();
 
@@ -33,11 +31,10 @@ public class LogActivity extends AppCompatActivity {
                 finish();
             }
         });
+        setGui();
     }
 
     private void setGui(){
-        ArrayList<ArrayList<Integer>> rollHistory = (ArrayList<ArrayList<Integer>>) getIntent().getSerializableExtra ("History");
-
+        ArrayList<BEDiceRoll> rolls = (ArrayList<BEDiceRoll>) getIntent().getSerializableExtra("History");
     }
-
 }
