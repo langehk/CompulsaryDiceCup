@@ -5,12 +5,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.compulsory_dicecup.BEDiceRoll;
 
+import java.util.Random;
+
 public class MainActivity extends AppCompatActivity {
+
+    LinearLayout box, resBox;
+    Button rollDice;
 
     TextView m_eTxtResult;
     TextView m_txtInfo;
@@ -28,6 +35,11 @@ public class MainActivity extends AppCompatActivity {
 
         m_eTxtResult = this.findViewById(R.id.txtResult);
         m_txtInfo = this.findViewById(R.id.txtInfo);
+
+        box = findViewById(R.id.box);
+        resBox = findViewById(R.id.resBox);
+        rollDice = findViewById(R.id.btnRoll);
+        rollDice.setOnClickListener((v) -> {rollDice(6); });
 
         Button btnAdd = this.findViewById(R.id.btnAdd);
         btnAdd.setOnClickListener(new View.OnClickListener()
@@ -62,6 +74,44 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+    private ImageView makeImgView(int i) {
+        ImageView img = new ImageView(this);
+        img.setAdjustViewBounds(true);
+        img.setMaxHeight(220);
+        img.setMaxWidth(220);
+        img.setPadding(15, 50, 15, 20);
+        switch (i){
+            case 1:
+                img.setImageResource(R.drawable.dice_1_th);
+                break;
+            case 2:
+                img.setImageResource(R.drawable.dice_2_th);
+                break;
+            case 3:
+                img.setImageResource(R.drawable.dice_3_th);
+                break;
+            case 4:
+                img.setImageResource(R.drawable.dice_4_th);
+                break;
+            case 5:
+                img.setImageResource(R.drawable.dice_5_th);
+                break;
+            case 6:
+                img.setImageResource(R.drawable.dice_6_th);
+                break;
+        }
+        return img;
+    }
+    private void rollDice(int c) {
+        box.removeAllViews();
+        Random rand = new Random();
+        for (int i = 0; i < c; i++) {
+            box.addView(makeImgView(rand.nextInt(6)+1));
+        }
+
+        //resBox.addView(box);
+    }
 
     private void onClickAdd()
     {
