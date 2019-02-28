@@ -17,7 +17,7 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
-    LinearLayout box, resBox;
+    LinearLayout box;
     Button rollDice;
     int nbDice;
     TextView m_txtInfo;
@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
         m_txtInfo = this.findViewById(R.id.txtInfo);
         m_txtInfo.setText("Number of dices: " + String.valueOf(nbDice));
         box = findViewById(R.id.box);
-        resBox = findViewById(R.id.resBox);
         rollDice = findViewById(R.id.btnRoll);
         rollDice.setOnClickListener((v) -> {rollDice(nbDice); });
 
