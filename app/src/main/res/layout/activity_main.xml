@@ -38,6 +38,7 @@
         android:layout_height="wrap_content"
         android:text="@string/add"
         android:id="@+id/btnAdd"
+        android:layout_margin="@android:dimen/app_icon_size"
         android:background="@color/colorPrimary"
         android:layout_gravity="center"
         />
@@ -47,6 +48,7 @@
         android:layout_height="wrap_content"
         android:text="@string/sub"
         android:id="@+id/btnSub"
+        android:layout_margin="@android:dimen/app_icon_size"
         android:background="@color/colorAccent"
         android:layout_gravity="center"
         />
