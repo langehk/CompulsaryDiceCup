@@ -20,7 +20,6 @@
         android:divider="#f00"
         android:dividerHeight="1dp"
         tools:listitem="com.example.compulsory_dicecup.MainActivity">
-
     </ListView>
 
 
