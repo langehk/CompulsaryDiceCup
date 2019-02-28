@@ -14,9 +14,8 @@ public class LogActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log);
-        setGui();
+        //setGui();
         configureBackButton();
-
         setUp();
 
     }
@@ -24,8 +23,6 @@ public class LogActivity extends AppCompatActivity {
 
     private void setUp() {
         ListView diceListView = this.findViewById(R.id.diceListView);
-
-
     }
 
     private void configureBackButton(){
