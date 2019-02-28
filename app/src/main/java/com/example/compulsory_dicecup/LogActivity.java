@@ -10,14 +10,14 @@ public class LogActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_log);
 
         configureBackButton();
     }
 
 
     private void configureBackButton(){
-        Button backButton = (Button) findViewById(R.id.btnPrevView);
+        Button backButton = findViewById(R.id.btnPrevView);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
