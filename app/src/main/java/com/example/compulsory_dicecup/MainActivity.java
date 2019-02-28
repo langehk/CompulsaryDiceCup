@@ -1,12 +1,16 @@
 package com.example.compulsory_dicecup;
 
-import android.content.Context;
+import android.annotation.SuppressLint;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.compulsory_dicecup.BEDiceRoll;
 
 import java.util.Random;
 
@@ -15,25 +19,50 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout box, resBox;
     Button rollDice;
 
+    TextView m_eTxtResult;
+    TextView m_txtInfo;
+
+    BEDiceRoll beDiceRoll;
+
+    private int[] diceRolls;
+
+
+    @SuppressLint("ResourceType")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        m_eTxtResult = this.findViewById(R.id.txtResult);
+        m_txtInfo = this.findViewById(R.id.txtInfo);
+
         box = findViewById(R.id.box);
         resBox = findViewById(R.id.resBox);
         rollDice = findViewById(R.id.btnRoll);
         rollDice.setOnClickListener((v) -> {rollDice(6); });
+
+        Button btnAdd = this.findViewById(R.id.btnAdd);
+        btnAdd.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                onClickAdd();
+            }
+        });
+
+        Button btnSub = this.findViewById(R.id.btnSub);
+        btnSub.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                onClickSub();
+            }
+        });
+
     }
 
-    private void rollDice(int c) {
-        box.removeAllViews();
-        Random rand = new Random();
-        for (int i = 0; i < c; i++) {
-            box.addView(makeImgView(rand.nextInt(6)+1));
-        }
-
-        //resBox.addView(box);
-    }
 
     private ImageView makeImgView(int i) {
         ImageView img = new ImageView(this);
@@ -63,13 +92,50 @@ public class MainActivity extends AppCompatActivity {
         }
         return img;
     }
+    private void rollDice(int c) {
+        box.removeAllViews();
+        Random rand = new Random();
+        for (int i = 0; i < c; i++) {
+            box.addView(makeImgView(rand.nextInt(6)+1));
+        }
 
-    private TextView makeTxView(int i) {
-        TextView tx = new TextView(this);
-        tx.setTextSize(16);
-        tx.setText(""+ i);
-        tx.setPadding(10, 10, 10, 10);
-        return tx;
+        //resBox.addView(box);
+    }
+
+    private void onClickAdd()
+    {
+
+        int dices = Integer.parseInt(m_eTxtResult.getText().toString());
+
+        if (dices > 5)
+        {
+            Toast.makeText(this, "Max 6 dices.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        int result = dices + 1;
+
+        m_eTxtResult.setText(String.valueOf(result));
+
+        m_txtInfo.setText("Number of dices: " + String.valueOf(result));
+    }
+
+    private void onClickSub()
+    {
+        int dices = Integer.parseInt(m_eTxtResult.getText().toString());
+
+        if (dices < 2)
+        {
+            Toast.makeText(this, "Atleast 1 dice needed.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        int result = dices - 1;
+
+        m_eTxtResult.setText(String.valueOf(result));
+
+        m_txtInfo.setText("Number of dices: " + String.valueOf(result));
     }
 
 }
+

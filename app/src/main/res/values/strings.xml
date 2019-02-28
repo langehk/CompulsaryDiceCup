@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">Compulsory Dice</string>
+    <string name="app_name">Compulsory-DiceCup</string>
+    <string name="add">Add</string>
+    <string name="sub">Subtract</string>
+    <string name="ok">Ok</string>
 </resources>
+
