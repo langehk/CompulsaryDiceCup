@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.ArrayList;
+
 public class LogActivity extends AppCompatActivity {
 
     @Override
@@ -25,4 +27,10 @@ public class LogActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void setGui(){
+        ArrayList<ArrayList<Integer>> rollHistory = (ArrayList<ArrayList<Integer>>) getIntent().getSerializableExtra ("History");
+
+    }
+
 }

@@ -2,6 +2,7 @@ package com.example.compulsory_dicecup;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
@@ -125,7 +126,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void configureNextButton(){
         Button nextButton = (Button) findViewById(R.id.btnNextView);
-        nextButton.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, LogActivity.class)));
-    }
+        Intent x = new Intent(this,LogActivity.class) ;
+        x.putParcelableArrayListExtra("History", (ArrayList<? extends Parcelable>) rollHistory);
+        nextButton.setOnClickListener(view -> startActivity(x));
 
+    }
 }
