@@ -2,17 +2,14 @@ package com.example.compulsory_dicecup;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import java.util.ArrayList;
-import java.util.List;
 
 public class LogActivity extends AppCompatActivity {
-    LinearLayout frame, histBox;
+    LinearLayout histBox;
     ListView diceListView;
     ArrayList<BEDiceRoll> rolls;
 
@@ -21,13 +18,12 @@ public class LogActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log);
         setUp();
-        setGui2();
+        setGui();
         configureBackButton();
     }
 
 
     private void setUp() {
-        frame = this.findViewById(R.id.frame);
         histBox = this.findViewById(R.id.histBox);
         diceListView = this.findViewById(R.id.diceListView);
     }
@@ -42,9 +38,8 @@ public class LogActivity extends AppCompatActivity {
         });
     }
 
-    private void setGui2(){
+    private void setGui(){
         rolls = (ArrayList<BEDiceRoll>) getIntent().getSerializableExtra("History");
-
         for (BEDiceRoll roll: rolls) {
             LinearLayout boxen = makeBox();
             ArrayList<Integer> dice = roll.getDiceRolls();
@@ -89,5 +84,4 @@ public class LogActivity extends AppCompatActivity {
         }
         return img;
     }
-
 }
