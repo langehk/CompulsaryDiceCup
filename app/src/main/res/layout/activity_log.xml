@@ -11,7 +11,14 @@
         android:id="@+id/btnPrevView"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:text="@string/BackToDice" />
+        android:text="@string/BackToDice"
+        />
+
+    <Button
+        android:id="@+id/btnClearView"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="@string/ClearView" />
 
     <ListView
         android:id="@+id/diceListView"
@@ -20,6 +27,7 @@
         android:divider="#f00"
         android:dividerHeight="1dp"
         tools:listitem="com.example.compulsory_dicecup.MainActivity">
+
     </ListView>
 
 

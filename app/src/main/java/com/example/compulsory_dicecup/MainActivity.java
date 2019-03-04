@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     Button rollDice, btnAdd, btnSub;
     int nbDice;
     TextView m_txtInfo;
+    Intent intent;
 
     BEDiceRoll beDiceRoll;
 
@@ -37,16 +39,19 @@ public class MainActivity extends AppCompatActivity {
         nbDice = 2;
         setUp();
 
+        intent = new Intent(this, LogActivity.class);
     }
 
-    private void setUp(){
+    private void setUp() {
         m_txtInfo = this.findViewById(R.id.txtInfo);
         m_txtInfo.setText("Number of dices: " + String.valueOf(nbDice));
 
         box = findViewById(R.id.box);
 
         rollDice = findViewById(R.id.btnRoll);
-        rollDice.setOnClickListener((v) -> {rollDice(nbDice); });
+        rollDice.setOnClickListener((v) -> {
+            rollDice(nbDice);
+        });
 
         btnAdd = this.findViewById(R.id.btnAdd);
         btnAdd.setOnClickListener(v -> onClickAdd());
@@ -57,13 +62,14 @@ public class MainActivity extends AppCompatActivity {
         configureNextButton();
     }
 
+
     private ImageView makeImgView(int i) {
         ImageView img = new ImageView(this);
         img.setAdjustViewBounds(true);
         img.setMaxHeight(220);
         img.setMaxWidth(220);
         img.setPadding(15, 50, 15, 20);
-        switch (i){
+        switch (i) {
             case 1:
                 img.setImageResource(R.drawable.dice_1_th);
                 break;
@@ -85,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
         }
         return img;
     }
+
     private void rollDice(int c) {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         BEDiceRoll diceRoll = new BEDiceRoll(timestamp);
@@ -92,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
         box.removeAllViews();
         Random rand = new Random();
         for (int i = 0; i < c; i++) {
-            int x = rand.nextInt(6)+1;
+            int x = rand.nextInt(6) + 1;
             box.addView(makeImgView(x));
             roll.add(x);
         }
@@ -100,10 +107,8 @@ public class MainActivity extends AppCompatActivity {
         rollHistory.add(diceRoll);
     }
 
-    private void onClickAdd()
-    {
-        if (nbDice > 5)
-        {
+    private void onClickAdd() {
+        if (nbDice > 5) {
             Toast.makeText(this, "Max 6 dices.", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -113,10 +118,8 @@ public class MainActivity extends AppCompatActivity {
         m_txtInfo.setText("Number of dices: " + String.valueOf(nbDice));
     }
 
-    private void onClickSub()
-    {
-        if (nbDice < 2)
-        {
+    private void onClickSub() {
+        if (nbDice < 2) {
             Toast.makeText(this, "Atleast 1 dice needed.", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -127,10 +130,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void configureNextButton(){
+    private void configureNextButton() {
         Button nextButton = (Button) findViewById(R.id.btnNextView);
-        Intent x = new Intent(this,LogActivity.class) ;
-        x.putExtra("History",  rollHistory);
-        nextButton.setOnClickListener(view -> startActivity(x));
+
+
+        nextButton.setOnClickListener(view -> {
+            intent.putExtra("History", rollHistory);
+            startActivityForResult(intent, 1);
+        });
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 1) {
+            if (data.getBooleanExtra("result",false)) {
+                rollHistory.clear();
+            }
+
+        }
     }
 }
