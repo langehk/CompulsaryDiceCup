@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import java.util.ArrayList;
+import java.util.List;
 
 public class LogActivity extends AppCompatActivity {
     LinearLayout frame, histBox;
