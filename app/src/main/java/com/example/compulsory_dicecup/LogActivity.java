@@ -3,23 +3,27 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListAdapter;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class LogActivity extends AppCompatActivity {
+    LinearLayout histBox;
     ListView diceListView;
+<<<<<<< HEAD
     ArrayList<String> dates = new ArrayList<>();
     ArrayList<ArrayList<Integer>> history;
     ArrayList<Integer> oneThrow = new ArrayList<>();
     ArrayAdapter adapter;
 
 
+=======
+    ArrayList<BEDiceRoll> rolls;
+>>>>>>> fedd2e7c5097e8b41d1c19bd00a7f30811544d0c
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +40,7 @@ public class LogActivity extends AppCompatActivity {
 
 
     private void setUp() {
+        histBox = this.findViewById(R.id.histBox);
         diceListView = this.findViewById(R.id.diceListView);
     }
     //Go back button
@@ -77,19 +82,51 @@ public class LogActivity extends AppCompatActivity {
 
     }
 
-    //dates.add(roll.getTimeStamp().toString());
-
     private void setGui(){
-        ArrayList<BEDiceRoll> rolls = (ArrayList<BEDiceRoll>) getIntent().getSerializableExtra("History");
-        dates = new ArrayList<>();
-        history = new ArrayList<>();
-        oneThrow = new ArrayList<>();
-        for (BEDiceRoll roll : rolls) {
-            for(int i = 0; i < roll.getDiceRolls().size() ; i++){
-                oneThrow.add(roll.getDiceRolls().get(i));
+        rolls = (ArrayList<BEDiceRoll>) getIntent().getSerializableExtra("History");
+        for (BEDiceRoll roll: rolls) {
+            LinearLayout boxen = makeBox();
+            ArrayList<Integer> dice = roll.getDiceRolls();
+            for (Integer d:dice) {
+                boxen.addView(makeImgView(d));
             }
-            history.add(oneThrow);
+            histBox.addView(boxen);
         }
+    }
+
+    private LinearLayout makeBox(){
+        LinearLayout box = new LinearLayout(this);
+        box.setOrientation(LinearLayout.HORIZONTAL);
+        return box;
+    }
+
+    private ImageView makeImgView(int i) {
+        ImageView img = new ImageView(this);
+        img.setAdjustViewBounds(true);
+        img.setMaxHeight(220);
+        img.setMaxWidth(220);
+        img.setPadding(15, 50, 15, 20);
+        switch (i){
+            case 1:
+                img.setImageResource(R.drawable.dice_1_th);
+                break;
+            case 2:
+                img.setImageResource(R.drawable.dice_2_th);
+                break;
+            case 3:
+                img.setImageResource(R.drawable.dice_3_th);
+                break;
+            case 4:
+                img.setImageResource(R.drawable.dice_4_th);
+                break;
+            case 5:
+                img.setImageResource(R.drawable.dice_5_th);
+                break;
+            case 6:
+                img.setImageResource(R.drawable.dice_6_th);
+                break;
+        }
+<<<<<<< HEAD
         adapter =
                 new ArrayAdapter<ArrayList<Integer>>(this,
                         android.R.layout.simple_list_item_1, history);
@@ -100,3 +137,8 @@ public class LogActivity extends AppCompatActivity {
 
 
 }
+=======
+        return img;
+    }
+}
+>>>>>>> fedd2e7c5097e8b41d1c19bd00a7f30811544d0c

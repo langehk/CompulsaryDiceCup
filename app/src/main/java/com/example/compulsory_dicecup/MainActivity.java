@@ -1,9 +1,7 @@
 package com.example.compulsory_dicecup;
 
 import android.annotation.SuppressLint;
-import android.app.ListActivity;
 import android.content.Intent;
-import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
