@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -70,8 +71,40 @@ public class LogActivity extends AppCompatActivity {
         rolls = (ArrayList<BEDiceRoll>) getIntent().getSerializableExtra("History");
     }
 
+
+}
+
+class BEDiceRollAdapter extends ArrayAdapter<BEDiceRoll> {
+    private ArrayList<BEDiceRoll> beDiceRolls;
+
+
+    public BEDiceRollAdapter(Context context, int textViewResourceId, ArrayList<BEDiceRoll> beDiceRolls){
+        super(context, textViewResourceId, beDiceRolls);
+        this.beDiceRolls = beDiceRolls;
+    }
+
+    @Override public View getView(int position, View view, ViewGroup parent){
+        if (view == null) {
+            LayoutInflater layoutInflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            view = layoutInflater.inflate(R.layout.cell, null);
+        }
+
+            BEDiceRoll beDiceRoll = beDiceRolls.get(position);
+
+            TextView timestamp = view.findViewById(R.id.timeStamp);
+            LinearLayout diceView = view.findViewById(R.id.diceBox);
+            diceView.removeAllViews();
+            timestamp.setText(beDiceRoll.getTimeStamp().toString());
+            int i;
+            for (i = 0; i < beDiceRoll.getDiceRolls().size(); i++)
+            {
+                diceView.addView(makeImgView(beDiceRoll.getDiceRolls().get(i)));
+            }
+        return view;
+    }
+
     private ImageView makeImgView(int i) {
-        ImageView img = new ImageView(this);
+        ImageView img = new ImageView(this.getContext());
         img.setAdjustViewBounds(true);
         img.setMaxHeight(220);
         img.setMaxWidth(220);
@@ -97,31 +130,6 @@ public class LogActivity extends AppCompatActivity {
                 break;
         }
         return img;
-    }
-}
-
-class BEDiceRollAdapter extends ArrayAdapter<BEDiceRoll> {
-    private ArrayList<BEDiceRoll> beDiceRolls;
-
-
-    public BEDiceRollAdapter(Context context, int textViewResourceId, ArrayList<BEDiceRoll> beDiceRolls){
-        super(context, textViewResourceId, beDiceRolls);
-        this.beDiceRolls = beDiceRolls;
-    }
-
-    @Override public View getView(int position, View view, ViewGroup parent){
-        if (view == null) {
-            LayoutInflater layoutInflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = layoutInflater.inflate(R.layout.cell, null);
-        }
-        else {
-            BEDiceRoll beDiceRoll = beDiceRolls.get(position);
-
-            TextView timestamp = (TextView) view.findViewById(R.id.timeStamp);
-
-            timestamp.setText(beDiceRoll.getTimeStamp().toString());
-        }
-        return view;
     }
 }
 
