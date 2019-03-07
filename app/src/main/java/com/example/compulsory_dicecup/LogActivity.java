@@ -19,6 +19,7 @@ public class LogActivity extends AppCompatActivity {
 
     ListView diceListView;
     ArrayList<BEDiceRoll> rolls;
+    BEDiceRollAdapter beDiceRollAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +29,9 @@ public class LogActivity extends AppCompatActivity {
         getData();
         configureBackButton();
         clearListViewButton();
+
+        beDiceRollAdapter = new BEDiceRollAdapter(this, R.layout.cell, rolls);
+        this.diceListView.setAdapter(beDiceRollAdapter);
     }
 
     private void setUp() {
