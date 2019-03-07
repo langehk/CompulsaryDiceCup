@@ -2,27 +2,17 @@ package com.example.compulsory_dicecup;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class LogActivity extends AppCompatActivity {
-    LinearLayout histBox;
+
     ListView diceListView;
-
-    ArrayList<String> dates = new ArrayList<>();
-    //ArrayList<ArrayList<Integer>> history;
-    ArrayList<Integer> oneThrow = new ArrayList<>();
-    ArrayAdapter adapter;
     ArrayList<BEDiceRoll> rolls;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,23 +22,18 @@ public class LogActivity extends AppCompatActivity {
         getData();
         configureBackButton();
         clearListViewButton();
-
     }
 
     private void setUp() {
         diceListView = this.findViewById(R.id.diceListView);
     }
 
-
     //Go back button
     private void configureBackButton(){
         Button backButton = findViewById(R.id.btnPrevView);
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                returnToMain(false);
-                Toast.makeText(LogActivity.this, "Back button pressed", Toast.LENGTH_SHORT).show();
-            }
+        backButton.setOnClickListener(v -> {
+            returnToMain(false);
+            Toast.makeText(LogActivity.this, "Back button pressed", Toast.LENGTH_SHORT).show();
         });
     }
 
@@ -65,7 +50,7 @@ public class LogActivity extends AppCompatActivity {
         Button clearButton = findViewById(R.id.btnClearView);
         Intent returnIntent = new Intent();
         clearButton.setOnClickListener(v -> {
-            histBox.removeAllViews();
+            //histBox.removeAllViews();
             Toast.makeText(LogActivity.this, "History cleared", Toast.LENGTH_SHORT).show();
             returnToMain(true);
         });
@@ -104,4 +89,6 @@ public class LogActivity extends AppCompatActivity {
         return img;
     }
 }
+
+
 
