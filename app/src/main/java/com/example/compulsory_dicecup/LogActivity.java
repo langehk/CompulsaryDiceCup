@@ -29,16 +29,17 @@ public class LogActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log);
         setUp();
-        setGui();
+        getData();
         configureBackButton();
         clearListViewButton();
 
     }
 
     private void setUp() {
-        histBox = this.findViewById(R.id.histBox);
         diceListView = this.findViewById(R.id.diceListView);
     }
+
+
     //Go back button
     private void configureBackButton(){
         Button backButton = findViewById(R.id.btnPrevView);
@@ -47,7 +48,6 @@ public class LogActivity extends AppCompatActivity {
             public void onClick(View v) {
                 returnToMain(false);
                 Toast.makeText(LogActivity.this, "Back button pressed", Toast.LENGTH_SHORT).show();
-
             }
         });
     }
@@ -64,41 +64,15 @@ public class LogActivity extends AppCompatActivity {
     private void clearListViewButton() {
         Button clearButton = findViewById(R.id.btnClearView);
         Intent returnIntent = new Intent();
-        clearButton.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-
-                histBox.removeAllViews();
-                Toast.makeText(LogActivity.this, "History cleared", Toast.LENGTH_SHORT).show();
-                returnToMain(true);
-            }
+        clearButton.setOnClickListener(v -> {
+            histBox.removeAllViews();
+            Toast.makeText(LogActivity.this, "History cleared", Toast.LENGTH_SHORT).show();
+            returnToMain(true);
         });
 
     }
-
-    private void setGui(){
+    private void getData(){
         rolls = (ArrayList<BEDiceRoll>) getIntent().getSerializableExtra("History");
-        for (BEDiceRoll roll: rolls) {
-            LinearLayout boxen = makeBox();
-            ArrayList<Integer> dice = roll.getDiceRolls();
-            for (Integer d:dice) {
-                boxen.addView(makeImgView(d));
-            }
-            histBox.addView(boxen);
-        }
-        //adapter =
-          //      new ArrayAdapter<ArrayList<Integer>>(this,
-            //            android.R.layout.simple_list_item_1, rolls);
-        //diceListView.setAdapter(adapter);
-
-    }
-
-    private LinearLayout makeBox(){
-        LinearLayout box = new LinearLayout(this);
-        box.setOrientation(LinearLayout.HORIZONTAL);
-        return box;
     }
 
     private ImageView makeImgView(int i) {
@@ -127,8 +101,6 @@ public class LogActivity extends AppCompatActivity {
                 img.setImageResource(R.drawable.dice_6_th);
                 break;
         }
-
-
         return img;
     }
 }
