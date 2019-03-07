@@ -1,10 +1,16 @@
 package com.example.compulsory_dicecup;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -90,5 +96,28 @@ public class LogActivity extends AppCompatActivity {
     }
 }
 
+class BEDiceRollAdapter extends ArrayAdapter<BEDiceRoll> {
+    private ArrayList<BEDiceRoll> beDiceRolls;
 
+
+    public BEDiceRollAdapter(Context context, int textViewResourceId, ArrayList<BEDiceRoll> beDiceRolls){
+        super(context, textViewResourceId, beDiceRolls);
+        this.beDiceRolls = beDiceRolls;
+    }
+
+    @Override public View getView(int position, View view, ViewGroup parent){
+        if (view == null) {
+            LayoutInflater layoutInflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            view = layoutInflater.inflate(R.layout.cell, null);
+        }
+        else {
+            BEDiceRoll beDiceRoll = beDiceRolls.get(position);
+
+            TextView timestamp = (TextView) view.findViewById(R.id.timeStamp);
+
+            timestamp.setText(beDiceRoll.getTimeStamp().toString());
+        }
+        return view;
+    }
+}
 
